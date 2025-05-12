@@ -7,7 +7,7 @@ namespace SeriesAnalyser
 
 
 
-       static List<int> series = new List<int>();
+        static List<int> series = new List<int>();
 
 
         static bool InputSeries()
@@ -36,20 +36,30 @@ namespace SeriesAnalyser
                     return false;
                 }
             }
-            return series.Count >=3?true:false;
-            
+            return series.Count >= 3 ? true : false;
+
         }
-        static void Display(List<int> series) {
+        static void Display(List<int> series)
+        {
             foreach (int num in series)
             {
                 Console.Write(num + ", ");
             }
             Console.WriteLine();
         }
-        static void Display(int num) {
+        static void Display(int num)
+        {
             Console.WriteLine(num);
         }
-        static List<int> ToReverse(List<int> series) { return series; }
+        static List<int> ToReverse(List<int> series)
+        {
+            List<int> reverse = new List<int>();
+            for (int i = series.Count - 1; i >= 0; i--)
+            {
+                reverse.Add(series[i]);
+            }
+            return series;
+        }
         List<int> ToSorted(List<int> series) { return series; }
         static int FindMax(List<int> series) { return 1; }
         static int FindMin(List<int> series) { return 1; }
