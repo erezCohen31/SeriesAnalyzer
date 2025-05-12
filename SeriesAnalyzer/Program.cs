@@ -43,7 +43,7 @@ namespace SeriesAnalyser
                     currentNum = "";
                     continue;
                 }
-                else if (i == (input.Length - 1))
+                else if (i == (input.Length - 1)&& input[i] >= 48 && input[i] <= 57)
                 {
                     currentNum += input[i];
                     seriesCurrent.Add(int.Parse(currentNum));

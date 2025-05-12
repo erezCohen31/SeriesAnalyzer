@@ -2,7 +2,7 @@
   "profiles": {
     "SeriesAnalyzer": {
       "commandName": "Project",
-      "commandLineArgs": "45 78 69 854"
+      "commandLineArgs": "10 1 2"
     }
   }
 }
