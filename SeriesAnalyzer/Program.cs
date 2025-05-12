@@ -76,7 +76,15 @@ namespace SeriesAnalyser
             List<int> sorted = ToSorted(series);
             return sorted[0];
         }
-        static int FindAverage(List<int> series) { return 1; }
+        static int FindAverage(List<int> series)
+        {
+            int sum = 0;
+            foreach (int num in series)
+            {
+                sum += num;
+            }
+            return sum / series.Count;
+        }
         static int FindLength(List<int> series) { return 1; }
         static int FindSum(List<int> series) { return 1; }
 
