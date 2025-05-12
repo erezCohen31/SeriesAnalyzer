@@ -2,16 +2,43 @@
 
 namespace SeriesAnalyser
 {
-
-
-
-    public class Menu
+    class Program
     {
-        List<int> series = new List<int>();
 
 
-        static bool InputSeries() { return true; }
-        static bool verifySeries(string input) { return true; }
+
+       static List<int> series = new List<int>();
+
+
+        static bool InputSeries()
+        {
+            string seriesInString = Console.ReadLine();
+            return verifySeries(seriesInString);
+        }
+        static bool verifySeries(string input)
+        {
+            string currentNum = "";
+            for (int i = 0; i < input.Length; i++)
+            {
+                if (input[i] >= 49 && input[i] <= 57)
+                {
+                    currentNum += input[i];
+                    continue;
+                }
+                else if (input[i] == ' ')
+                {
+                    series.Add(int.Parse(currentNum));
+                    currentNum = "";
+                    continue;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            return series.Count >=3?true:false;
+            
+        }
         static void Display(List<int> series) { }
         static void Display(int num) { }
         static List<int> ToReverse(List<int> series) { return series; }
@@ -92,9 +119,8 @@ namespace SeriesAnalyser
         }
 
 
-    }
-    class Program
-    {
+
+
 
 
         static void Main(string[] args)
