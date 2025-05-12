@@ -4,31 +4,44 @@ namespace SeriesAnalyser
 {
     class Program
     {
-
-
-
         static List<int> series = new List<int>();
-
-
         static bool InputSeries()
         {
             string seriesInString = Console.ReadLine();
-            return verifySeries(seriesInString);
+            if (verifySeries(seriesInString))
+            {
+                return true;
+            }
+            else
+            {
+                Console.WriteLine("Invalid input. Please enter a series of numbers.");
+                return false;
+            }
+
         }
         static bool verifySeries(string input)
         {
             string currentNum = "";
+            List<int> seriesCurrent = new List<int>();
             for (int i = 0; i < input.Length; i++)
             {
-                if (input[i] >= 49 && input[i] <= 57)
+                if (input[i] == ' ')
                 {
-                    currentNum += input[i];
+                    seriesCurrent.Add(int.Parse(currentNum));
+                    currentNum = "";
                     continue;
                 }
-                else if (input[i] == ' ')
+                else if (i == (input.Length - 1))
                 {
-                    series.Add(int.Parse(currentNum));
+                    currentNum += input[i];
+                    seriesCurrent.Add(int.Parse(currentNum));
                     currentNum = "";
+                    continue;
+
+                }
+                else if (input[i] >= 48 && input[i] <= 57)
+                {
+                    currentNum += input[i];
                     continue;
                 }
                 else
@@ -36,6 +49,7 @@ namespace SeriesAnalyser
                     return false;
                 }
             }
+            series = seriesCurrent;
             return series.Count >= 3 ? true : false;
 
         }
@@ -48,6 +62,10 @@ namespace SeriesAnalyser
             Console.WriteLine();
         }
         static void Display(int num)
+        {
+            Console.WriteLine(num);
+        }
+        static void Display(double num)
         {
             Console.WriteLine(num);
         }
@@ -76,26 +94,42 @@ namespace SeriesAnalyser
             List<int> sorted = ToSorted(series);
             return sorted[0];
         }
-        static int FindAverage(List<int> series)
+        static double FindAverage(List<int> series)
+        {
+            double sum = 0;
+            foreach (double num in series)
+            {
+                sum += num;
+            }
+            return sum / series.Count;
+        }
+        static int FindLength(List<int> series)
+        {
+            return series.Count;
+        }
+        static int FindSum(List<int> series)
         {
             int sum = 0;
             foreach (int num in series)
             {
                 sum += num;
             }
-            return sum / series.Count;
+            return sum;
         }
-        static int FindLength(List<int> series) { return 1; }
-        static int FindSum(List<int> series) { return 1; }
-
-        public void RunMenu()
+        static public void RunMenu()
         {
-            InputSeries();
+            bool isBegan = false;
             bool isContinue = true;
+
+            while (!isBegan)
+            {
+                Console.WriteLine("Input a Series.");
+                isBegan = InputSeries() ? true : false;
+            }
+
 
             while (isContinue)
             {
-                char choice = Console.ReadLine()[0];
                 Console.WriteLine(
                     $"a. Input a Series. (Replace the current series)\n" +
                     $"b. Display the series in the order it was entered.\n" +
@@ -107,6 +141,7 @@ namespace SeriesAnalyser
                     $"h. Display the Number of elements in the series.\n" +
                     $"i. Display the Sum of the series.\n" +
                     $"j. Exit.");
+                char choice = Console.ReadLine()[0];
 
                 switch (choice)
                 {
@@ -156,16 +191,10 @@ namespace SeriesAnalyser
                 }
             }
         }
-
-
-
-
-
-
         static void Main(string[] args)
         {
 
-
+            RunMenu();
 
         }
     }
