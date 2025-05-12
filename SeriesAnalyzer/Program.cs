@@ -43,7 +43,7 @@ namespace SeriesAnalyser
                     currentNum = "";
                     continue;
                 }
-                else if (i == (input.Length - 1)&& input[i] >= 48 && input[i] <= 57)
+                else if (i == (input.Length - 1) && input[i] >= 48 && input[i] <= 57)
                 {
                     currentNum += input[i];
                     seriesCurrent.Add(int.Parse(currentNum));
@@ -72,11 +72,9 @@ namespace SeriesAnalyser
             for (int i = 0; i < args.Length; i++)
             {
                 if (int.TryParse(args[i], out int nombre))
-
                 {
                     currentNum += args[i];
                     seriesCurrent.Add(int.Parse(args[i]));
-
                 }
                 else
                 {
@@ -188,36 +186,44 @@ namespace SeriesAnalyser
                         break;
                     case 'c':
                         Console.WriteLine("Your series in reverse: ");
-                        Display(ToReverse(series));
+                        List<int> reversed = ToReverse(series);
+                        Display(reversed);
                         break;
                     case 'd':
                         Console.WriteLine("Your series sorted: ");
-                        Display(ToSorted(series));
+                        List<int> sorted = ToSorted(series);
+                        Display(sorted);
                         break;
                     case 'e':
                         Console.WriteLine("The max is series: ");
-                        Display(FindMax(series));
+                        int max = FindMax(series);
+                        Display(max);
                         break;
                     case 'f':
                         Console.WriteLine("The min is series: ");
-                        Display(FindMin(series));
+                        int min = FindMin(series);
+                        Display(min);
                         break;
                     case 'g':
                         Console.WriteLine("The average is: ");
-                        Display(FindAverage(series));
+                        double average = FindAverage(series);
+                        Display(average);
                         break;
                     case 'h':
                         Console.WriteLine("The legth of the series is: ");
-                        Display(FindLength(series));
+                        int length = FindLength(series);
+                        Display(length);
                         break;
                     case 'i':
                         Console.WriteLine("The sum of the series is: ");
-                        Display(FindSum(series));
+                        int sum = FindSum(series);
+                        Display(sum);
                         break;
                     case 'j':
                         isContinue = false;
                         break;
                     default:
+                        Console.WriteLine("detected error");
                         break;
 
 
