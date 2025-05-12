@@ -60,14 +60,22 @@ namespace SeriesAnalyser
             }
             return reverse;
         }
-        List<int> ToSorted(List<int> series)
+        static List<int> ToSorted(List<int> series)
         {
             List<int> sorted = series;
             sorted.Sort();
             return sorted;
         }
-        static int FindMax(List<int> series) { return 1; }
-        static int FindMin(List<int> series) { return 1; }
+        static int FindMax(List<int> series)
+        {
+            List<int> sorted = ToSorted(series);
+            return sorted[sorted.Count - 1];
+        }
+        static int FindMin(List<int> series)
+        {
+            List<int> sorted = ToSorted(series);
+            return sorted[0];
+        }
         static int FindAverage(List<int> series) { return 1; }
         static int FindLength(List<int> series) { return 1; }
         static int FindSum(List<int> series) { return 1; }
@@ -83,8 +91,8 @@ namespace SeriesAnalyser
                 Console.WriteLine(
                     $"a. Input a Series. (Replace the current series)\n" +
                     $"b. Display the series in the order it was entered.\n" +
-                    $"c. Display the series in the reversed order it was\r\nentered.\n" +
-                    $"d. Display the series in sorted order (from low to\r\nhigh).\n" +
+                    $"c. Display the series in the reversed order it was entered.\n" +
+                    $"d. Display the series in sorted order (from low to high).\n" +
                     $"e. Display the Max value of the series.\n" +
                     $"f. Display the Min value of the series.\n" +
                     $"g. Display the Average of the series.\n" +
