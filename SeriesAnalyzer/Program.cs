@@ -1,23 +1,34 @@
 ﻿
-using System;
-using System.Security.Cryptography;
 
-namespace ConsoleApp1
+namespace SeriesAnalyser
 {
 
 
-    class Car
-    {
-        public string color;
-        public static int count;
-    }
+
     public class Menu
     {
+        List<int> series = new List<int>();
+
+
+        static bool InputSeries() { return true; }
+        static bool verifySeries(string input) { return true; }
+        static void Display(List<int> series) { }
+        static void Display(int num) { }
+        static List<int> ToReverse(List<int> series) { return series; }
+        List<int> ToSorted(List<int> series) { return series; }
+        static int FindMax(List<int> series) { return 1; }
+        static int FindMin(List<int> series) { return 1; }
+        static int FindAverage(List<int> series) { return 1; }
+        static int FindLength(List<int> series) { return 1; }
+        static int FindSum(List<int> series) { return 1; }
+
         public void RunMenu()
         {
-            do
+            InputSeries();
+            bool isContinue = true;
+
+            while (isContinue)
             {
-                inputSeries();
                 char choice = Console.ReadLine()[0];
                 Console.WriteLine(
                     $"a. Input a Series. (Replace the current series)\n" +
@@ -31,24 +42,69 @@ namespace ConsoleApp1
                     $"i. Display the Sum of the series.\n" +
                     $"j. Exit.");
 
-                switch
-            } while (true) ;
-            }
+                switch (choice)
+                {
+                    case 'a':
+                        Console.WriteLine("Input a series of numbers: ");
+                        InputSeries();
+                        break;
+                    case 'b':
+                        Console.WriteLine("Your series in order: ");
+                        Display(series);
+                        break;
+                    case 'c':
+                        Console.WriteLine("Your series in reverse: ");
+                        Display(ToReverse(series));
+                        break;
+                    case 'd':
+                        Console.WriteLine("Your series sorted: ");
+                        Display(ToSorted(series));
+                        break;
+                    case 'e':
+                        Console.WriteLine("The max is series: ");
+                        Display(FindMax(series));
+                        break;
+                    case 'f':
+                        Console.WriteLine("The min is series: ");
+                        Display(FindMin(series));
+                        break;
+                    case 'g':
+                        Console.WriteLine("The average is: ");
+                        Display(FindAverage(series));
+                        break;
+                    case 'h':
+                        Console.WriteLine("The legth of the series is: ");
+                        Display(FindLength(series));
+                        break;
+                    case 'i':
+                        Console.WriteLine("The sum of the series is: ");
+                        Display(FindSum(series));
+                        break;
+                    case 'j':
+                        isContinue = false;
+                        break;
+                    default:
+                        break;
 
 
-    }
-        class Program
-        {
-
-
-            static void Main(string[] args)
-            {
-
-
-
+                }
             }
         }
 
 
-
     }
+    class Program
+    {
+
+
+        static void Main(string[] args)
+        {
+
+
+
+        }
+    }
+
+
+
+}
