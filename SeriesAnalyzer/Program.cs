@@ -39,8 +39,16 @@ namespace SeriesAnalyser
             return series.Count >=3?true:false;
             
         }
-        static void Display(List<int> series) { }
-        static void Display(int num) { }
+        static void Display(List<int> series) {
+            foreach (int num in series)
+            {
+                Console.Write(num + ", ");
+            }
+            Console.WriteLine();
+        }
+        static void Display(int num) {
+            Console.WriteLine(num);
+        }
         static List<int> ToReverse(List<int> series) { return series; }
         List<int> ToSorted(List<int> series) { return series; }
         static int FindMax(List<int> series) { return 1; }
