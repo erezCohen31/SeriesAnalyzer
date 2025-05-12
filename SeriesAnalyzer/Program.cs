@@ -58,9 +58,14 @@ namespace SeriesAnalyser
             {
                 reverse.Add(series[i]);
             }
-            return series;
+            return reverse;
         }
-        List<int> ToSorted(List<int> series) { return series; }
+        List<int> ToSorted(List<int> series)
+        {
+            List<int> sorted = series;
+            sorted.Sort();
+            return sorted;
+        }
         static int FindMax(List<int> series) { return 1; }
         static int FindMin(List<int> series) { return 1; }
         static int FindAverage(List<int> series) { return 1; }
