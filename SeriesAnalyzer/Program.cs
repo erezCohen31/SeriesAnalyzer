@@ -5,18 +5,30 @@ namespace SeriesAnalyser
     class Program
     {
         static List<int> series = new List<int>();
-        static bool InputSeries()
+        static int count = 0;
+        static bool InputSeries(string[] args)
         {
-            string seriesInString = Console.ReadLine();
-            if (verifySeries(seriesInString))
+
+            if (verifySeriesArgs(args) && count == 0)
             {
+                count++;
                 return true;
             }
             else
             {
-                Console.WriteLine("Invalid input. Please enter a series of numbers.");
-                return false;
+                if (count == 0) { Console.WriteLine("Invalid input. Please enter a series of numbers."); }
+                string seriesInString = Console.ReadLine();
+                if (verifySeries(seriesInString))
+                {
+                    return true;
+                }
+                else
+                {
+                    Console.WriteLine("Invalid input. Please enter a series of numbers.");
+                    return false;
+                }
             }
+
 
         }
         static bool verifySeries(string input)
@@ -52,6 +64,27 @@ namespace SeriesAnalyser
             series = seriesCurrent;
             return series.Count >= 3 ? true : false;
 
+        }
+        static bool verifySeriesArgs(string[] args)
+        {
+            string currentNum = "";
+            List<int> seriesCurrent = new List<int>();
+            for (int i = 0; i < args.Length; i++)
+            {
+                if (int.TryParse(args[i], out int nombre))
+
+                {
+                    currentNum += args[i];
+                    seriesCurrent.Add(int.Parse(args[i]));
+
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            series = seriesCurrent;
+            return series.Count >= 3 ? true : false;
         }
         static void Display(List<int> series)
         {
@@ -116,7 +149,7 @@ namespace SeriesAnalyser
             }
             return sum;
         }
-        static public void RunMenu()
+        static public void RunMenu(string[] args)
         {
             bool isBegan = false;
             bool isContinue = true;
@@ -124,7 +157,7 @@ namespace SeriesAnalyser
             while (!isBegan)
             {
                 Console.WriteLine("Input a Series.");
-                isBegan = InputSeries() ? true : false;
+                isBegan = InputSeries(args) ? true : false;
             }
 
 
@@ -147,7 +180,7 @@ namespace SeriesAnalyser
                 {
                     case 'a':
                         Console.WriteLine("Input a series of numbers: ");
-                        InputSeries();
+                        InputSeries(args);
                         break;
                     case 'b':
                         Console.WriteLine("Your series in order: ");
@@ -194,7 +227,7 @@ namespace SeriesAnalyser
         static void Main(string[] args)
         {
 
-            RunMenu();
+            RunMenu(args);
 
         }
     }
