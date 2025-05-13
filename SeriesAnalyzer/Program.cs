@@ -119,7 +119,7 @@ namespace SeriesAnalyser
         //sort list
         static List<int> ToSorted(List<int> series)
         {
-            List<int> sorted = series;
+            List<int> sorted = new List<int>(series);
             sorted.Sort();
             return sorted;
         }
@@ -251,7 +251,4 @@ namespace SeriesAnalyser
 
         }
     }
-
-
-
 }
