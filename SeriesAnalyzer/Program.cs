@@ -5,6 +5,8 @@ namespace SeriesAnalyser
     class Program
     {
         static List<int> series = new List<int>();
+       static bool isContinue = true;
+
         //get the args
         static bool InputSeries(string[] args)
         {
@@ -162,95 +164,98 @@ namespace SeriesAnalyser
             }
             return sum;
         }
-        //run the menu and verify if need to use args or not
-        static void RunMenu(string[] args)
+        static void PrintMenu()
         {
-            bool isContinue = true;
-            //veirify if need to use args or user input
-            bool isBegan = InputSeries(args);
+            Console.WriteLine(
 
+                  "\n" +
+                  "a. Input a Series. (Replace the current series)\n" +
+                  "b. Display the series in the order it was entered.\n" +
+                  "c. Display the series in the reversed order it was entered.\n" +
+                  "d. Display the series in sorted order (from low to high).\n" +
+                  "e. Display the Max value of the series.\n" +
+                  "f. Display the Min value of the series.\n" +
+                  "g. Display the Average of the series.\n" +
+                  "h. Display the Number of elements in the series.\n" +
+                  "i. Display the Sum of the series.\n" +
+                  "j. Exit.\n");
+        }
+        //run the choice of user
+        static void UserChoice()
+        {
+            char choice = Console.ReadLine()[0];
+
+            switch (choice)
+            {
+                case 'a':
+                    Console.Write("\nInput a series of numbers: ");
+                    InputSeries();
+                    break;
+                case 'b':
+                    Console.Write("\nYour series in order: ");
+                    Display(series);
+                    break;
+                case 'c':
+                    Console.Write("\nYour series in reverse: ");
+                    List<int> reversed = ToReverse(series);
+                    Display(reversed);
+                    break;
+                case 'd':
+                    Console.Write("\nYour series sorted: ");
+                    List<int> sorted = ToSorted(series);
+                    Display(sorted);
+                    break;
+                case 'e':
+                    Console.Write("\nThe max is series: ");
+                    int max = FindMax(series);
+                    Display(max);
+                    break;
+                case 'f':
+                    Console.Write("\nThe min is series: ");
+                    int min = FindMin(series);
+                    Display(min);
+                    break;
+                case 'g':
+                    Console.Write("\nThe average is: ");
+                    double average = FindAverage(series);
+                    Display(average);
+                    break;
+                case 'h':
+                    Console.Write("\nThe legth of the series is: ");
+                    int length = FindLength(series);
+                    Display(length);
+                    break;
+                case 'i':
+                    Console.Write("\nThe sum of the series is: ");
+                    int sum = FindSum(series);
+                    Display(sum);
+                    break;
+                case 'j':
+                    isContinue = false;
+                    break;
+                default:
+                    Console.Write("\n choice not exist\n");
+                    break;
+
+            }
+        }
+        //veirify if need to use args or user input
+        static void VerifyArgsOrUser(string[] args)
+        {
+            bool isBegan = InputSeries(args);
             if (!isBegan)
             {
                 isBegan = InputSeries();
-
             }
-
-
+        }
+        //run the menu 
+        static void RunMenu(string[] args)
+        {
+            VerifyArgsOrUser(args);
             while (isContinue)
             {
-
-                Console.WriteLine(
-
-                    "\n" +
-                    "a. Input a Series. (Replace the current series)\n" +
-                    "b. Display the series in the order it was entered.\n" +
-                    "c. Display the series in the reversed order it was entered.\n" +
-                    "d. Display the series in sorted order (from low to high).\n" +
-                    "e. Display the Max value of the series.\n" +
-                    "f. Display the Min value of the series.\n" +
-                    "g. Display the Average of the series.\n" +
-                    "h. Display the Number of elements in the series.\n" +
-                    "i. Display the Sum of the series.\n" +
-                    "j. Exit.\n");
-
-
-
-                char choice = Console.ReadLine()[0];
-
-                switch (choice)
-                {
-                    case 'a':
-                        Console.Write("\nInput a series of numbers: ");
-                        InputSeries();
-                        break;
-                    case 'b':
-                        Console.Write("\nYour series in order: ");
-                        Display(series);
-                        break;
-                    case 'c':
-                        Console.Write("\nYour series in reverse: ");
-                        List<int> reversed = ToReverse(series);
-                        Display(reversed);
-                        break;
-                    case 'd':
-                        Console.Write("\nYour series sorted: ");
-                        List<int> sorted = ToSorted(series);
-                        Display(sorted);
-                        break;
-                    case 'e':
-                        Console.Write("\nThe max is series: ");
-                        int max = FindMax(series);
-                        Display(max);
-                        break;
-                    case 'f':
-                        Console.Write("\nThe min is series: ");
-                        int min = FindMin(series);
-                        Display(min);
-                        break;
-                    case 'g':
-                        Console.Write("\nThe average is: ");
-                        double average = FindAverage(series);
-                        Display(average);
-                        break;
-                    case 'h':
-                        Console.Write("\nThe legth of the series is: ");
-                        int length = FindLength(series);
-                        Display(length);
-                        break;
-                    case 'i':
-                        Console.Write("\nThe sum of the series is: ");
-                        int sum = FindSum(series);
-                        Display(sum);
-                        break;
-                    case 'j':
-                        isContinue = false;
-                        break;
-                    default:
-                        Console.Write("\n choice not exist\n");
-                        break;
-
-                }
-
+                PrintMenu();
+                UserChoice();
             }
         }
         static void Main(string[] args)
