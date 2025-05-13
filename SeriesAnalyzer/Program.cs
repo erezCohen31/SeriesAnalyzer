@@ -6,6 +6,7 @@ namespace SeriesAnalyser
     {
         static List<int> series = new List<int>();
         static int count = 0;
+        //verify if need to use args or not
         static bool InputSeries(string[] args)
         {
 
@@ -31,6 +32,7 @@ namespace SeriesAnalyser
 
 
         }
+        //verify if the input is a series of numbers and push it to the list
         static bool verifySeries(string input)
         {
             string currentNum = "";
@@ -65,6 +67,7 @@ namespace SeriesAnalyser
             return series.Count >= 3 ? true : false;
 
         }
+        //verify if the args is a series of numbers
         static bool verifySeriesArgs(string[] args)
         {
             string currentNum = "";
@@ -84,6 +87,7 @@ namespace SeriesAnalyser
             series = seriesCurrent;
             return series.Count >= 3 ? true : false;
         }
+        //print list
         static void Display(List<int> series)
         {
             foreach (int num in series)
@@ -92,14 +96,17 @@ namespace SeriesAnalyser
             }
             Console.WriteLine();
         }
+        //print int
         static void Display(int num)
         {
             Console.WriteLine(num);
         }
+        //print double
         static void Display(double num)
         {
             Console.WriteLine(num);
         }
+        //reverse list
         static List<int> ToReverse(List<int> series)
         {
             List<int> reverse = new List<int>();
@@ -109,22 +116,26 @@ namespace SeriesAnalyser
             }
             return reverse;
         }
+        //sort list
         static List<int> ToSorted(List<int> series)
         {
             List<int> sorted = series;
             sorted.Sort();
             return sorted;
         }
+        //find the max in the list
         static int FindMax(List<int> series)
         {
             List<int> sorted = ToSorted(series);
             return sorted[sorted.Count - 1];
         }
+        //find the min in the list
         static int FindMin(List<int> series)
         {
             List<int> sorted = ToSorted(series);
             return sorted[0];
         }
+        //calculate the average of the list
         static double FindAverage(List<int> series)
         {
             double sum = 0;
@@ -134,10 +145,12 @@ namespace SeriesAnalyser
             }
             return sum / series.Count;
         }
+        //return the length of the list
         static int FindLength(List<int> series)
         {
             return series.Count;
         }
+        //calculate the sum of the list
         static int FindSum(List<int> series)
         {
             int sum = 0;
@@ -147,6 +160,7 @@ namespace SeriesAnalyser
             }
             return sum;
         }
+        //run the menu and verify if need to use args or not
         static public void RunMenu(string[] args)
         {
             bool isBegan = false;
