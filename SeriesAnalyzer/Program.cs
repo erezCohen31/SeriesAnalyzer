@@ -5,7 +5,6 @@ namespace SeriesAnalyser
     class Program
     {
         static List<int> series = new List<int>();
-
         //get the args
         static bool InputSeries(string[] args)
         {
@@ -17,14 +16,11 @@ namespace SeriesAnalyser
                 return true;
             }
             Console.WriteLine("Invalid input. Please enter a series of numbers.");
-
             return false;
         }
         //get input from user and enter in the list
         static bool InputSeries()
         {
-
-
             string seriesInString = Console.ReadLine();
             (bool, List<int>) verif = verifySeries(seriesInString);
             if (verif.Item1)
@@ -35,7 +31,7 @@ namespace SeriesAnalyser
             else
             {
                 Console.WriteLine("Invalid input. Please enter a series of numbers.");
-                return false;
+                return InputSeries();
             }
         }
         //verify if the input is a series of numbers and push it to the list
@@ -74,7 +70,7 @@ namespace SeriesAnalyser
 
         }
         //verify if the args is a series of numbers
-        static (bool,List<int>) verifySeriesArgs(string[] args)
+        static (bool, List<int>) verifySeriesArgs(string[] args)
         {
             string currentNum = "";
             List<int> seriesCurrent = new List<int>();
@@ -89,9 +85,9 @@ namespace SeriesAnalyser
                     return (false, seriesCurrent);
                 }
             }
-            return seriesCurrent.Count >= 3?  (true, seriesCurrent): (false, seriesCurrent);
-           
-            
+            return seriesCurrent.Count >= 3 ? (true, seriesCurrent) : (false, seriesCurrent);
+
+
         }
         //print list
         static void Display(List<int> series)
@@ -182,8 +178,9 @@ namespace SeriesAnalyser
 
             while (isContinue)
             {
+
                 Console.WriteLine(
-                    
+
                     "\n" +
                     "a. Input a Series. (Replace the current series)\n" +
                     "b. Display the series in the order it was entered.\n" +
@@ -195,7 +192,10 @@ namespace SeriesAnalyser
                     "h. Display the Number of elements in the series.\n" +
                     "i. Display the Sum of the series.\n" +
                     "j. Exit.\n");
-                char choice = Console.ReadLine()[0];
+            
+
+
+            char choice = Console.ReadLine()[0];
 
                 switch (choice)
                 {
@@ -249,10 +249,12 @@ namespace SeriesAnalyser
                         Console.Write("\n choice not exist\n");
                         break;
 
-
                 }
+
             }
         }
+    
+
         static void Main(string[] args)
         {
 
