@@ -190,8 +190,10 @@ namespace SeriesAnalyser
         //run the choice of user
         static void UserChoice()
         {
-            char choice = Console.ReadLine()[0];
-
+            string input;
+            do { input = Console.ReadLine(); }
+            while (string.IsNullOrWhiteSpace(input));
+            char choice = input[0];
             switch (choice)
             {
                 case 'a':
