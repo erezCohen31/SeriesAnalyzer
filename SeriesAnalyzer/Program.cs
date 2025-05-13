@@ -165,13 +165,13 @@ namespace SeriesAnalyser
         //run the menu and verify if need to use args or not
         static void RunMenu(string[] args)
         {
-            bool isBegan = false;
             bool isContinue = true;
-            isBegan = InputSeries(args) ? true : false;
+            //veirify if need to use args or user input
+            bool isBegan = InputSeries(args);
 
-            while (!isBegan)
+            if (!isBegan)
             {
-                isBegan = InputSeries() ? true : false;
+                isBegan = InputSeries();
 
             }
 
@@ -192,10 +192,10 @@ namespace SeriesAnalyser
                     "h. Display the Number of elements in the series.\n" +
                     "i. Display the Sum of the series.\n" +
                     "j. Exit.\n");
-            
 
 
-            char choice = Console.ReadLine()[0];
+
+                char choice = Console.ReadLine()[0];
 
                 switch (choice)
                 {
@@ -253,8 +253,6 @@ namespace SeriesAnalyser
 
             }
         }
-    
-
         static void Main(string[] args)
         {
 
