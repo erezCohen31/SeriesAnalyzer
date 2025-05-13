@@ -9,7 +9,6 @@ namespace SeriesAnalyser
         //verify if need to use args or not
         static bool InputSeries(string[] args)
         {
-
             if (verifySeriesArgs(args) && count == 0)
             {
                 count++;
@@ -29,8 +28,6 @@ namespace SeriesAnalyser
                     return false;
                 }
             }
-
-
         }
         //verify if the input is a series of numbers and push it to the list
         static bool verifySeries(string input)
@@ -74,10 +71,9 @@ namespace SeriesAnalyser
             List<int> seriesCurrent = new List<int>();
             for (int i = 0; i < args.Length; i++)
             {
-                if (int.TryParse(args[i], out int nombre))
+                if (int.TryParse(args[i], out int number))
                 {
-                    currentNum += args[i];
-                    seriesCurrent.Add(int.Parse(args[i]));
+                    seriesCurrent.Add(number);
                 }
                 else
                 {
@@ -161,7 +157,7 @@ namespace SeriesAnalyser
             return sum;
         }
         //run the menu and verify if need to use args or not
-        static public void RunMenu(string[] args)
+        static void RunMenu(string[] args)
         {
             bool isBegan = false;
             bool isContinue = true;
