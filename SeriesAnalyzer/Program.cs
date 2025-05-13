@@ -5,26 +5,31 @@ namespace SeriesAnalyser
     class Program
     {
         static List<int> series = new List<int>();
-        
+
         //get the args
         static bool InputSeries(string[] args)
         {
-            if (verifySeriesArgs(args))
+            (bool, List<int>) verif = verifySeriesArgs(args);
+
+            if (verif.Item1)
             {
+                series = verif.Item2;
                 return true;
             }
             Console.WriteLine("Invalid input. Please enter a series of numbers.");
 
             return false;
         }
-        //get input from user
+        //get input from user and enter in the list
         static bool InputSeries()
         {
 
-           
+
             string seriesInString = Console.ReadLine();
-            if (verifySeries(seriesInString))
+            (bool, List<int>) verif = verifySeries(seriesInString);
+            if (verif.Item1)
             {
+                series = verif.Item2;
                 return true;
             }
             else
@@ -33,8 +38,8 @@ namespace SeriesAnalyser
                 return false;
             }
         }
-       //verify if the input is a series of numbers and push it to the list
-        static bool verifySeries(string input)
+        //verify if the input is a series of numbers and push it to the list
+        static (bool, List<int>) verifySeries(string input)
         {
             string currentNum = "";
             List<int> seriesCurrent = new List<int>();
@@ -61,19 +66,18 @@ namespace SeriesAnalyser
                 }
                 else
                 {
-                    return false;
+                    return (false, seriesCurrent);
                 }
             }
             if (seriesCurrent.Count >= 3)
             {
-                series = seriesCurrent;
-                return true;
+                return (true, seriesCurrent);
             }
-            return false;
+            return (false, seriesCurrent);
 
         }
         //verify if the args is a series of numbers
-        static bool verifySeriesArgs(string[] args)
+        static (bool,List<int>) verifySeriesArgs(string[] args)
         {
             string currentNum = "";
             List<int> seriesCurrent = new List<int>();
@@ -85,15 +89,15 @@ namespace SeriesAnalyser
                 }
                 else
                 {
-                    return false;
+                    return (false, seriesCurrent);
                 }
             }
-            if(seriesCurrent.Count >= 3)
+            if (seriesCurrent.Count >= 3)
             {
                 series = seriesCurrent;
-                return true ;
+                return (true, seriesCurrent);
             }
-            return false;
+            return (false, seriesCurrent);
         }
         //print list
         static void Display(List<int> series)
@@ -178,7 +182,7 @@ namespace SeriesAnalyser
             while (!isBegan)
             {
                 isBegan = InputSeries() ? true : false;
-                
+
             }
 
 
