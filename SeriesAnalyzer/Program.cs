@@ -5,31 +5,35 @@ namespace SeriesAnalyser
     class Program
     {
         static List<int> series = new List<int>();
-        static int count = 0;
-        //verify if need to use args or not
+        
+        //get the args
         static bool InputSeries(string[] args)
         {
-            if (verifySeriesArgs(args) && count == 0)
+            if (verifySeriesArgs(args))
             {
-                count++;
+                return true;
+            }
+            Console.WriteLine("Invalid input. Please enter a series of numbers.");
+
+            return false;
+        }
+        //get input from user
+        static bool InputSeries()
+        {
+
+           
+            string seriesInString = Console.ReadLine();
+            if (verifySeries(seriesInString))
+            {
                 return true;
             }
             else
             {
-                if (count == 0) { Console.WriteLine("Invalid input. Please enter a series of numbers."); }
-                string seriesInString = Console.ReadLine();
-                if (verifySeries(seriesInString))
-                {
-                    return true;
-                }
-                else
-                {
-                    Console.WriteLine("Invalid input. Please enter a series of numbers.");
-                    return false;
-                }
+                Console.WriteLine("Invalid input. Please enter a series of numbers.");
+                return false;
             }
         }
-        //verify if the input is a series of numbers and push it to the list
+       //verify if the input is a series of numbers and push it to the list
         static bool verifySeries(string input)
         {
             string currentNum = "";
@@ -60,8 +64,12 @@ namespace SeriesAnalyser
                     return false;
                 }
             }
-            series = seriesCurrent;
-            return series.Count >= 3 ? true : false;
+            if (seriesCurrent.Count >= 3)
+            {
+                series = seriesCurrent;
+                return true;
+            }
+            return false;
 
         }
         //verify if the args is a series of numbers
@@ -80,8 +88,12 @@ namespace SeriesAnalyser
                     return false;
                 }
             }
-            series = seriesCurrent;
-            return series.Count >= 3 ? true : false;
+            if(seriesCurrent.Count >= 3)
+            {
+                series = seriesCurrent;
+                return true ;
+            }
+            return false;
         }
         //print list
         static void Display(List<int> series)
@@ -161,34 +173,35 @@ namespace SeriesAnalyser
         {
             bool isBegan = false;
             bool isContinue = true;
+            isBegan = InputSeries(args) ? true : false;
 
             while (!isBegan)
             {
-                Console.WriteLine("Input a Series.");
-                isBegan = InputSeries(args) ? true : false;
+                isBegan = InputSeries() ? true : false;
+                
             }
 
 
             while (isContinue)
             {
                 Console.WriteLine(
-                    $"a. Input a Series. (Replace the current series)\n" +
-                    $"b. Display the series in the order it was entered.\n" +
-                    $"c. Display the series in the reversed order it was entered.\n" +
-                    $"d. Display the series in sorted order (from low to high).\n" +
-                    $"e. Display the Max value of the series.\n" +
-                    $"f. Display the Min value of the series.\n" +
-                    $"g. Display the Average of the series.\n" +
-                    $"h. Display the Number of elements in the series.\n" +
-                    $"i. Display the Sum of the series.\n" +
-                    $"j. Exit.");
+                    "a. Input a Series. (Replace the current series)\n" +
+                    "b. Display the series in the order it was entered.\n" +
+                    "c. Display the series in the reversed order it was entered.\n" +
+                    "d. Display the series in sorted order (from low to high).\n" +
+                    "e. Display the Max value of the series.\n" +
+                    "f. Display the Min value of the series.\n" +
+                    "g. Display the Average of the series.\n" +
+                    "h. Display the Number of elements in the series.\n" +
+                    "i. Display the Sum of the series.\n" +
+                    "j. Exit.");
                 char choice = Console.ReadLine()[0];
 
                 switch (choice)
                 {
                     case 'a':
                         Console.WriteLine("Input a series of numbers: ");
-                        InputSeries(args);
+                        InputSeries();
                         break;
                     case 'b':
                         Console.WriteLine("Your series in order: ");
