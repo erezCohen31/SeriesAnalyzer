@@ -5,7 +5,7 @@ namespace SeriesAnalyser
     class Program
     {
         static List<int> series = new List<int>();
-       static bool isContinue = true;
+        static bool isContinue = true;
 
         //get the args
         static bool InputSeries(string[] args)
@@ -45,8 +45,11 @@ namespace SeriesAnalyser
             {
                 if (input[i] == ' ')
                 {
-                    seriesCurrent.Add(int.Parse(currentNum));
-                    currentNum = "";
+                    if (currentNum != "")
+                    {
+                        seriesCurrent.Add(int.Parse(currentNum));
+                        currentNum = "";
+                    }
                     continue;
                 }
                 else if (i == (input.Length - 1) && input[i] >= 48 && input[i] <= 57)
@@ -64,16 +67,20 @@ namespace SeriesAnalyser
                 }
                 else
                 {
-                    return (false, seriesCurrent);
+                    return (false, null);
                 }
             }
-            return seriesCurrent.Count >= 3 ? (true, seriesCurrent) : (false, seriesCurrent);
+            return seriesCurrent.Count >= 3 ? (true, seriesCurrent) : (false, null);
 
 
         }
         //verify if the args is a series of numbers
         static (bool, List<int>) verifySeriesArgs(string[] args)
         {
+            if (args.Length < 3)
+            {
+                return (false, null);
+            }
             string currentNum = "";
             List<int> seriesCurrent = new List<int>();
             for (int i = 0; i < args.Length; i++)
@@ -84,10 +91,10 @@ namespace SeriesAnalyser
                 }
                 else
                 {
-                    return (false, seriesCurrent);
+                    return (false, null);
                 }
             }
-            return seriesCurrent.Count >= 3 ? (true, seriesCurrent) : (false, seriesCurrent);
+            return (true, seriesCurrent);
 
 
         }
